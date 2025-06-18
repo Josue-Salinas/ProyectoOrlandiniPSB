@@ -14,7 +14,11 @@ public class ProyectoPSB {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+      
+        
+        VentanaLogin xd = new VentanaLogin();
+        xd.setVisible(true);
+       
     }
     
 }
