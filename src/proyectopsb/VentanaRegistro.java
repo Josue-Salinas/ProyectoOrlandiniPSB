@@ -7,18 +7,18 @@ package proyectopsb;
 import Clases.DatosCompartidos;
 import Clases.Usuario;
 import javax.swing.JOptionPane;
-
+import proyectopsb.VentanaLogin;
 
 /**
  *
- * @author JUAN PARIS
+ * @author FABRIZZIO
  */
-public class VentanaLogin extends javax.swing.JFrame {
+public class VentanaRegistro extends javax.swing.JFrame {
 
     /**
-     * Creates new form VentanaLogin
+     * Creates new form VentanaRegistro
      */
-    public VentanaLogin() {
+    public VentanaRegistro() {
         initComponents();
     }
 
@@ -32,16 +32,33 @@ public class VentanaLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        VolverAlaVentanaLogin = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         txtClave = new javax.swing.JPasswordField();
-        btnLogin = new javax.swing.JLabel();
-        btnRegistrar = new javax.swing.JLabel();
-        Salir = new javax.swing.JLabel();
+        btnRegistrarse = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
+
+        VolverAlaVentanaLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        VolverAlaVentanaLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VolverAlaVentanaLoginMouseClicked(evt);
+            }
+        });
+        jPanel1.add(VolverAlaVentanaLogin);
+        VolverAlaVentanaLogin.setBounds(20, 30, 90, 30);
+
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtNombre);
+        txtNombre.setBounds(120, 320, 220, 30);
 
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,7 +66,7 @@ public class VentanaLogin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtCorreo);
-        txtCorreo.setBounds(120, 370, 240, 30);
+        txtCorreo.setBounds(120, 370, 220, 30);
 
         txtClave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,39 +74,20 @@ public class VentanaLogin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtClave);
-        txtClave.setBounds(120, 420, 240, 30);
+        txtClave.setBounds(120, 420, 220, 30);
 
-        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnRegistrarse.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegistrarse.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLoginMouseClicked(evt);
+                btnRegistrarseMouseClicked(evt);
             }
         });
-        jPanel1.add(btnLogin);
-        btnLogin.setBounds(60, 600, 320, 40);
+        jPanel1.add(btnRegistrarse);
+        btnRegistrarse.setBounds(50, 520, 330, 40);
 
-        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistrarMouseClicked(evt);
-            }
-        });
-        jPanel1.add(btnRegistrar);
-        btnRegistrar.setBounds(60, 660, 320, 40);
-
-        Salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Salir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SalirMouseClicked(evt);
-            }
-        });
-        jPanel1.add(Salir);
-        Salir.setBounds(60, 720, 320, 30);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Login.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Registro.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 420, 880);
+        jLabel1.setBounds(0, 0, 420, 890);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,19 +95,28 @@ public class VentanaLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 881, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void VolverAlaVentanaLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VolverAlaVentanaLoginMouseClicked
+        new VentanaLogin().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_VolverAlaVentanaLoginMouseClicked
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
 
@@ -119,48 +126,28 @@ public class VentanaLogin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtClaveActionPerformed
 
-    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-
+    private void btnRegistrarseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarseMouseClicked
+        String nombre = txtNombre.getText().trim();
         String correo = txtCorreo.getText().trim();
         String clave = new String(txtClave.getPassword());
         
-        if (DatosCompartidos.usuarios.containsKey(correo)){
-            
-            Usuario usu = DatosCompartidos.usuarios.get(correo);
-            
-            if (usu.getClave().equals(clave)){
-          
-            JOptionPane.showMessageDialog(this, "Se inicio Sesion con exito!");
-            
-            //VentanaPrincipal aea = new VentanaPrincipal();
-            //aea.setVisible(true);
-            this.dispose();
-            
-            }else{         
-                
-                JOptionPane.showMessageDialog(this, "Constraseña incorrecta");
-                
-            }
-        }else{
-            
-             JOptionPane.showMessageDialog(this, "Correo no registrado");
-            
+        if (nombre.isEmpty() || correo.isEmpty() || clave.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Complete todos los campos que dejo vacio!");
+            return;
         }
-    }//GEN-LAST:event_btnLoginMouseClicked
-
-    private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
-
-       VentanaRegistro xd = new VentanaRegistro();
-       xd.setVisible(true);
-        this.dispose();
         
-    }//GEN-LAST:event_btnRegistrarMouseClicked
-
-    private void SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalirMouseClicked
-
-        System.exit(0);
-        
-    }//GEN-LAST:event_SalirMouseClicked
+        if (DatosCompartidos.usuarios.containsKey(correo)){
+            JOptionPane.showMessageDialog(this, "El correo que intenta regfistrar ya essta en uso");
+        }else{
+            Usuario nuevo = new Usuario(nombre, correo, clave);
+            DatosCompartidos.usuarios.put(correo, nuevo);
+            JOptionPane.showMessageDialog(this, "Usuario Registrado con exito!");
+            
+            txtNombre.setText("");
+            txtCorreo.setText("");
+            txtClave.setText("");
+        }
+    }//GEN-LAST:event_btnRegistrarseMouseClicked
 
     /**
      * @param args the command line arguments
@@ -179,31 +166,31 @@ public class VentanaLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaLogin().setVisible(true);
+                new VentanaRegistro().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Salir;
-    private javax.swing.JLabel btnLogin;
-    private javax.swing.JLabel btnRegistrar;
+    private javax.swing.JLabel VolverAlaVentanaLogin;
+    private javax.swing.JLabel btnRegistrarse;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField txtClave;
     private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
