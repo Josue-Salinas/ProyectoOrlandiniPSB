@@ -132,8 +132,8 @@ public class VentanaLogin extends javax.swing.JFrame {
           
             JOptionPane.showMessageDialog(this, "Se inicio Sesion con exito!");
             
-            //VentanaPrincipal aea = new VentanaPrincipal();
-            //aea.setVisible(true);
+            VentanaPrincipal aea = new VentanaPrincipal();
+            aea.setVisible(true);
             this.dispose();
             
             }else{         
