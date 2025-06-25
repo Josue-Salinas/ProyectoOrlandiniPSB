@@ -112,8 +112,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnAgregarPuntoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPuntoMouseClicked
 
-        //VentanaAgregar ventana = new VentanaAgregar();
-        //ventana.setVisible(true);
+        VentanaAgregar ventana = new VentanaAgregar();
+        ventana.setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_btnAgregarPuntoMouseClicked
