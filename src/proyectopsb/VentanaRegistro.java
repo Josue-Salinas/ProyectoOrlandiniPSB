@@ -7,7 +7,6 @@ package proyectopsb;
 import Clases.DatosCompartidos;
 import Clases.Usuario;
 import javax.swing.JOptionPane;
-import proyectopsb.VentanaLogin;
 
 /**
  *
@@ -20,6 +19,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
      */
     public VentanaRegistro() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -135,7 +135,25 @@ public class VentanaRegistro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Complete todos los campos que dejo vacio!");
             return;
         }
-        
+        if(!correo.contains("@") || !correo.contains(".")){
+            JOptionPane.showMessageDialog(this, "El Correo debe de tener un '@' y el '.com'");
+            return;
+        }
+        if(clave.length() < 8){
+            JOptionPane.showMessageDialog(this, "La Contraseña deve tener al menos 8 caracteres!!");
+            return;
+        }
+        boolean veriSitieneMayusculas = false;
+        for(char contra : clave.toCharArray()){
+            if(Character.isUpperCase(contra)){
+                veriSitieneMayusculas = true;
+                break;
+            }
+        }
+        if(!veriSitieneMayusculas){
+            JOptionPane.showMessageDialog(this, "La Contraseña debe tener minimo 1 Letra Mayuscula!");
+            return;
+        }
         if (DatosCompartidos.usuarios.containsKey(correo)){
             JOptionPane.showMessageDialog(this, "El correo que intenta regfistrar ya essta en uso");
         }else{
@@ -174,6 +192,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

@@ -6,6 +6,7 @@ package proyectopsb;
 
 import Clases.DatosCompartidos;
 import Clases.PuntoCritico;
+import Clases.Usuario;
 
 import javax.swing.JOptionPane;
 import proyectopsb.VentanaPrincipal;
@@ -19,8 +20,12 @@ public class VentanaAgregar extends javax.swing.JFrame {
     /**
      * Creates new form VentanaAgregar
      */
-    public VentanaAgregar() {
+    Usuario usuarioActual;
+    public VentanaAgregar(Usuario usuarioActual) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.usuarioActual = usuarioActual;
+        lblUsuarioActual.setText("Usuario: "+usuarioActual.getNombre()+" || Correco: "+usuarioActual.getCorreo());
     }
 
     /**
@@ -33,25 +38,19 @@ public class VentanaAgregar extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnVolverAVentanaPrincipal = new javax.swing.JButton();
         txtDireccion = new javax.swing.JTextField();
         txtDistrito = new javax.swing.JTextField();
         cbPrioridad = new javax.swing.JComboBox<>();
         btnGuardarPunto = new javax.swing.JLabel();
+        VolverVentanaPrincipal = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtObservacion = new javax.swing.JTextArea();
+        lblUsuarioActual = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
-
-        btnVolverAVentanaPrincipal.setText("Volver");
-        btnVolverAVentanaPrincipal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverAVentanaPrincipalActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnVolverAVentanaPrincipal);
-        btnVolverAVentanaPrincipal.setBounds(260, 500, 130, 40);
 
         txtDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,7 +66,7 @@ public class VentanaAgregar extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtDistrito);
-        txtDistrito.setBounds(120, 200, 270, 40);
+        txtDistrito.setBounds(120, 190, 270, 40);
 
         cbPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Alta", "Media", "Baja" }));
         cbPrioridad.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +75,7 @@ public class VentanaAgregar extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cbPrioridad);
-        cbPrioridad.setBounds(120, 300, 150, 30);
+        cbPrioridad.setBounds(120, 290, 150, 30);
 
         btnGuardarPunto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardarPunto.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -85,11 +84,29 @@ public class VentanaAgregar extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnGuardarPunto);
-        btnGuardarPunto.setBounds(50, 500, 150, 40);
+        btnGuardarPunto.setBounds(40, 620, 150, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Agregar.jpg"))); // NOI18N
+        VolverVentanaPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        VolverVentanaPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VolverVentanaPrincipalMouseClicked(evt);
+            }
+        });
+        jPanel1.add(VolverVentanaPrincipal);
+        VolverVentanaPrincipal.setBounds(250, 620, 160, 40);
+
+        txtObservacion.setColumns(20);
+        txtObservacion.setRows(5);
+        jScrollPane1.setViewportView(txtObservacion);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(30, 430, 360, 86);
+        jPanel1.add(lblUsuarioActual);
+        lblUsuarioActual.setBounds(20, 20, 390, 30);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Agregar-1.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(6, 6, 420, 890);
+        jLabel1.setBounds(6, 6, 420, 881);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,13 +127,6 @@ public class VentanaAgregar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVolverAVentanaPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAVentanaPrincipalActionPerformed
-
-        this.setVisible(false);
-        new VentanaPrincipal().setVisible(true);
-        
-    }//GEN-LAST:event_btnVolverAVentanaPrincipalActionPerformed
-
     private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
 
     }//GEN-LAST:event_txtDireccionActionPerformed
@@ -134,13 +144,19 @@ public class VentanaAgregar extends javax.swing.JFrame {
         String direccion = txtDireccion.getText().trim();
         String distrito = txtDistrito.getText().trim();
         String prioridad = (String) cbPrioridad.getSelectedItem(); //metodo pa agarrar el valor que escojamos en el CB
+        String observacion = txtObservacion.getText().trim();
+        
+        if(observacion.length() > 200){
+            JOptionPane.showMessageDialog(this, "Se excedio el numero de caracteres disponibles en la Observacion por favor coloque  menos de 200 caracteres!");
+            return;
+        }
         
             if (direccion.isEmpty() || distrito.isEmpty() || prioridad.isEmpty()){
             JOptionPane.showMessageDialog(this, "Complete todos los campos que dejo vacio!");
             return;
         }
             
-            PuntoCritico nuevo = new PuntoCritico(direccion, distrito, prioridad);
+            PuntoCritico nuevo = new PuntoCritico(direccion, distrito, prioridad, observacion);
             DatosCompartidos.puntosCriticos.add(nuevo);
             
             JOptionPane.showMessageDialog(this, "Punto Critico Registrado Correctamente!");
@@ -148,8 +164,14 @@ public class VentanaAgregar extends javax.swing.JFrame {
             txtDireccion.setText("");
             txtDistrito.setText("");
             cbPrioridad.setSelectedIndex(0);
+            txtObservacion.setText("");
 
     }//GEN-LAST:event_btnGuardarPuntoMouseClicked
+
+    private void VolverVentanaPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VolverVentanaPrincipalMouseClicked
+        this.setVisible(false);
+        new VentanaPrincipal(usuarioActual).setVisible(true);
+    }//GEN-LAST:event_VolverVentanaPrincipalMouseClicked
 
     /**
      * @param args the command line arguments
@@ -181,18 +203,21 @@ public class VentanaAgregar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaAgregar().setVisible(true);
+                //new VentanaAgregar().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel VolverVentanaPrincipal;
     private javax.swing.JLabel btnGuardarPunto;
-    private javax.swing.JButton btnVolverAVentanaPrincipal;
     private javax.swing.JComboBox<String> cbPrioridad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblUsuarioActual;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtDistrito;
+    private javax.swing.JTextArea txtObservacion;
     // End of variables declaration//GEN-END:variables
 }

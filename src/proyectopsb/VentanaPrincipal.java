@@ -4,10 +4,12 @@
  */
 package proyectopsb;
 
-//import proyectopsb.VentanaAgregar;
-//import proyectopsb.VentanaEditar;
-import proyectopsb.VentanaLogin;
-//import proyectopsb.VentanaMostrar;
+import proyectopsb.VentanaAgregar;
+import Clases.DatosCompartidos;
+import Clases.Usuario;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,8 +20,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
-    public VentanaPrincipal() {
+
+    Usuario usuarioActual;
+    public VentanaPrincipal(Usuario usuarioActual) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.usuarioActual = usuarioActual;
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String fechaHoraActual = LocalDateTime.now().format(formato);
+        lblUsuarioActual.setText("Usuario: "+usuarioActual.getNombre()+" || Correco: "+usuarioActual.getCorreo()+" || Fecha Actual: "+fechaHoraActual);
+        lblContador.setText("Total de Sesiones Activas: "+ DatosCompartidos.contadorSesion);
     }
 
     /**
@@ -36,6 +46,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnAgregarPunto = new javax.swing.JLabel();
         btnMostrarPuntos = new javax.swing.JLabel();
         btnEditarPunto = new javax.swing.JLabel();
+        btnVentanaBuscarDistrito = new javax.swing.JLabel();
+        btnVentanaEliminar = new javax.swing.JLabel();
+        lblUsuarioActual = new javax.swing.JLabel();
+        btnAyuda = new javax.swing.JButton();
+        lblContador = new javax.swing.JLabel();
+        btnVentanaPerfil = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,7 +74,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnAgregarPunto);
-        btnAgregarPunto.setBounds(60, 410, 320, 40);
+        btnAgregarPunto.setBounds(40, 190, 160, 100);
 
         btnMostrarPuntos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMostrarPuntos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -67,7 +83,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnMostrarPuntos);
-        btnMostrarPuntos.setBounds(60, 470, 320, 40);
+        btnMostrarPuntos.setBounds(220, 190, 160, 100);
 
         btnEditarPunto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditarPunto.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -76,11 +92,51 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnEditarPunto);
-        btnEditarPunto.setBounds(60, 530, 320, 40);
+        btnEditarPunto.setBounds(230, 350, 150, 100);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Principal (1).jpg"))); // NOI18N
+        btnVentanaBuscarDistrito.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVentanaBuscarDistrito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVentanaBuscarDistritoMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnVentanaBuscarDistrito);
+        btnVentanaBuscarDistrito.setBounds(40, 350, 160, 100);
+
+        btnVentanaEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVentanaEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVentanaEliminarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnVentanaEliminar);
+        btnVentanaEliminar.setBounds(40, 490, 160, 100);
+        jPanel1.add(lblUsuarioActual);
+        lblUsuarioActual.setBounds(110, 30, 310, 30);
+
+        btnAyuda.setText("Ayuda?");
+        btnAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAyudaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAyuda);
+        btnAyuda.setBounds(340, 70, 80, 30);
+        jPanel1.add(lblContador);
+        lblContador.setBounds(100, 630, 270, 20);
+
+        btnVentanaPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVentanaPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVentanaPerfilMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnVentanaPerfil);
+        btnVentanaPerfil.setBounds(220, 490, 160, 100);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Principal nuevo 3.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(6, 6, 410, 890);
+        jLabel1.setBounds(6, 6, 420, 881);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,7 +168,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnAgregarPuntoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPuntoMouseClicked
 
-        VentanaAgregar ventana = new VentanaAgregar();
+        VentanaAgregar ventana = new VentanaAgregar(usuarioActual);
         ventana.setVisible(true);
         this.dispose();
 
@@ -120,19 +176,50 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnMostrarPuntosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarPuntosMouseClicked
 
-        //VentanaMostrar ventanaM = new VentanaMostrar();
+        //VentanaMostrar ventanaM = new VentanaMostrar(usuarioActual);
         //ventanaM.setVisible(true);
-        this.dispose();
+        //this.dispose();
         
     }//GEN-LAST:event_btnMostrarPuntosMouseClicked
 
     private void btnEditarPuntoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarPuntoMouseClicked
 
-        //VentanaEditar ventanaED = new VentanaEditar();
-       // ventanaED.setVisible(true);
-        this.dispose();
+        //VentanaEditar ventanaED = new VentanaEditar(usuarioActual);
+        //ventanaED.setVisible(true);
+        //this.dispose();
         
     }//GEN-LAST:event_btnEditarPuntoMouseClicked
+
+    private void btnVentanaBuscarDistritoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentanaBuscarDistritoMouseClicked
+        //VentanaBuscarDistrito ventanaBD = new VentanaBuscarDistrito(usuarioActual);
+        //ventanaBD.setVisible(true);
+        //this.dispose();
+    }//GEN-LAST:event_btnVentanaBuscarDistritoMouseClicked
+
+    private void btnVentanaEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentanaEliminarMouseClicked
+        //VentanaEliminar ventanaEP = new VentanaEliminar(usuarioActual);
+        //ventanaEP.setVisible(true);
+        //this.dispose();
+    }//GEN-LAST:event_btnVentanaEliminarMouseClicked
+
+    private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
+        
+        JOptionPane.showMessageDialog(this, "Guia rapaida de como usar el sistema:\n\n" +
+              "- Agregar: registra un nuevo punto critico\n" +
+              "- Mostrar: visualiza todos los puntos registrados y sus prioridades\n" +
+              "- Editar: modifica direccion, distrito o prioridad\n" +
+              "- Eliminar: borra puntos solucionados\n" +
+              "- Buscar: filtra por distrito u observacion\n\n" +
+              "No olvides cerrar sesión cuando termines...",
+              "Ayuda del sistema", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnAyudaActionPerformed
+
+    private void btnVentanaPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentanaPerfilMouseClicked
+        
+        //VentanaPerfil vp = new VentanaPerfil(usuarioActual);
+        //vp.setVisible(true);
+        //this.dispose();
+    }//GEN-LAST:event_btnVentanaPerfilMouseClicked
 
     /**
      * @param args the command line arguments
@@ -160,11 +247,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaPrincipal().setVisible(true);
+                //new VentanaPrincipal().setVisible(true);
             }
         });
     }
@@ -172,9 +260,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel VolverAlLogin;
     private javax.swing.JLabel btnAgregarPunto;
+    private javax.swing.JButton btnAyuda;
     private javax.swing.JLabel btnEditarPunto;
     private javax.swing.JLabel btnMostrarPuntos;
+    private javax.swing.JLabel btnVentanaBuscarDistrito;
+    private javax.swing.JLabel btnVentanaEliminar;
+    private javax.swing.JLabel btnVentanaPerfil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblContador;
+    private javax.swing.JLabel lblUsuarioActual;
     // End of variables declaration//GEN-END:variables
 }

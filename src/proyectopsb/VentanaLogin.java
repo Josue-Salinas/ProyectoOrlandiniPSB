@@ -8,10 +8,9 @@ import Clases.DatosCompartidos;
 import Clases.Usuario;
 import javax.swing.JOptionPane;
 
-
 /**
  *
- * @author JUAN PARIS
+ * @author FABRIZZIO
  */
 public class VentanaLogin extends javax.swing.JFrame {
 
@@ -20,6 +19,7 @@ public class VentanaLogin extends javax.swing.JFrame {
      */
     public VentanaLogin() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -86,10 +86,10 @@ public class VentanaLogin extends javax.swing.JFrame {
         jPanel1.add(Salir);
         Salir.setBounds(60, 720, 320, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Login.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Login.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 420, 880);
+        jLabel1.setBounds(0, 0, 419, 881);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,11 +131,15 @@ public class VentanaLogin extends javax.swing.JFrame {
             if (usu.getClave().equals(clave)){
           
             JOptionPane.showMessageDialog(this, "Se inicio Sesion con exito!");
+            DatosCompartidos.contadorSesion++;
             
-            VentanaPrincipal aea = new VentanaPrincipal();
-            aea.setVisible(true);
-            this.dispose();
-            
+              if(correo.equals("admin@admin.com") && clave.equals("Admin123")){
+                  //new VentanaAdministrador().setVisible(true);//cambiar 
+                  //this.dispose();//cambiar 
+              }else{
+                  new VentanaPrincipal(usu).setVisible(true);
+                  this.dispose();
+              }    
             }else{         
                 
                 JOptionPane.showMessageDialog(this, "Constraseña incorrecta");
@@ -150,15 +154,18 @@ public class VentanaLogin extends javax.swing.JFrame {
 
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
 
-       VentanaRegistro xd = new VentanaRegistro();
-       xd.setVisible(true);
+        VentanaRegistro xd = new VentanaRegistro();
+        xd.setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_btnRegistrarMouseClicked
 
     private void SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalirMouseClicked
 
-        System.exit(0);
+        int opcion = JOptionPane.showConfirmDialog(this, "Estas Seguro de que deseas salir de la aplicacion?", "Confirmar la salida", JOptionPane.YES_NO_OPTION);
+        if(opcion == JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
         
     }//GEN-LAST:event_SalirMouseClicked
 
@@ -187,6 +194,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
