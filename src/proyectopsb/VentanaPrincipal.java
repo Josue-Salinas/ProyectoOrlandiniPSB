@@ -191,15 +191,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarPuntoMouseClicked
 
     private void btnVentanaBuscarDistritoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentanaBuscarDistritoMouseClicked
-        //VentanaBuscarDistrito ventanaBD = new VentanaBuscarDistrito(usuarioActual);
-        //ventanaBD.setVisible(true);
-        //this.dispose();
+        VentanaBuscarDistrito ventanaBD = new VentanaBuscarDistrito(usuarioActual);
+        ventanaBD.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVentanaBuscarDistritoMouseClicked
 
     private void btnVentanaEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentanaEliminarMouseClicked
-        //VentanaEliminar ventanaEP = new VentanaEliminar(usuarioActual);
-        //ventanaEP.setVisible(true);
-        //this.dispose();
+        VentanaEliminar ventanaEP = new VentanaEliminar(usuarioActual);
+        ventanaEP.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVentanaEliminarMouseClicked
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
