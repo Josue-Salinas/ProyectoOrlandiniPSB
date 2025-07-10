@@ -176,9 +176,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnMostrarPuntosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarPuntosMouseClicked
 
-        //VentanaMostrar ventanaM = new VentanaMostrar(usuarioActual);
-        //ventanaM.setVisible(true);
-        //this.dispose();
+        VentanaMostrar ventanaM = new VentanaMostrar(usuarioActual);
+        ventanaM.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_btnMostrarPuntosMouseClicked
 
@@ -216,9 +216,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnVentanaPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentanaPerfilMouseClicked
         
-        //VentanaPerfil vp = new VentanaPerfil(usuarioActual);
-        //vp.setVisible(true);
-        //this.dispose();
+        VentanaPerfil vp = new VentanaPerfil(usuarioActual);
+        vp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVentanaPerfilMouseClicked
 
     /**

@@ -40,7 +40,7 @@ public class Usuario {
         return clave;
     }
     
-    public void getClave(String clave){
+    public void setClave(String clave){
         this.clave = clave;
     }
 }
