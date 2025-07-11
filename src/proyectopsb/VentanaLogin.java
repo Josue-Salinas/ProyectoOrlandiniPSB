@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author FABRIZZIO
+ * @author JUAN
  */
 public class VentanaLogin extends javax.swing.JFrame {
 

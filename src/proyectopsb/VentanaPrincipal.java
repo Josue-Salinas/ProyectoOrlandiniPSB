@@ -184,9 +184,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnEditarPuntoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarPuntoMouseClicked
 
-        //VentanaEditar ventanaED = new VentanaEditar(usuarioActual);
-        //ventanaED.setVisible(true);
-        //this.dispose();
+      VentanaEditar ventanaED = new VentanaEditar(usuarioActual);
+      ventanaED.setVisible(true);
+      this.dispose();
         
     }//GEN-LAST:event_btnEditarPuntoMouseClicked
 
