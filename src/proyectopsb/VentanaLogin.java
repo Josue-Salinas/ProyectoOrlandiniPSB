@@ -134,8 +134,8 @@ public class VentanaLogin extends javax.swing.JFrame {
             DatosCompartidos.contadorSesion++;
             
               if(correo.equals("admin@admin.com") && clave.equals("Admin123")){
-                  //new VentanaAdministrador().setVisible(true);//cambiar 
-                  //this.dispose();//cambiar 
+                  new VentanaAdministrador().setVisible(true);//cambiar 
+                  this.dispose();//cambiar 
               }else{
                   new VentanaPrincipal(usu).setVisible(true);
                   this.dispose();
